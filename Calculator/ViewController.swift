@@ -28,23 +28,37 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func operate(sender: UIButton) {
+        let operation = sender.currentTitle!
+        switch operation {
+            case "×":
+            case "÷":
+            case "+":
+            case "−":
+        }
+    
+    }
+    
+    
     // Need to initialize here.
     var operandStack = Array<Double>()
     
     
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
-        operandStack.append(display.text)
+        operandStack.append(displayValue)
+        println("operandStack = \(operandStack)")
         
         
     }
     
     var displayValue: Double {
         get {
-            
+            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
         }
         set {
-            
+            display.text = "\(newValue)"
+            userIsInTheMiddleOfTypingANumber = false
         }
     }
     
