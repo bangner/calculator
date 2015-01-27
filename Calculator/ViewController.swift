@@ -30,13 +30,28 @@ class ViewController: UIViewController {
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
+        if userIsInTheMiddleOfTypingANumber {
+            enter()
+        }
         switch operation {
-            case "×":
-            case "÷":
-            case "+":
-            case "−":
+            case "×": performOperation(multiply)
+//            case "÷": performOperation(divide)
+//            case "+": performOperation(add)
+//            case "−": performOperation(subtract)
+            default: break
         }
     
+    }
+    
+    func performOperation(operation: (Double, Double) -> Double) {
+        if operandStack.count >= 2 {
+            displayValue = operation(operandStack.removeLast(), operandStack.removeLast()
+            enter()
+        }
+    }
+    
+    func multiply(op1: Double, op2: Double) -> Double {
+        return op1 * op2
     }
     
     
